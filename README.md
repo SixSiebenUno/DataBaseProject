@@ -20,7 +20,7 @@ Author
 
 Project
 
-​	Course Selection Tool  $CST$
+​	Course Selection Helper $CSH$
 
 
 

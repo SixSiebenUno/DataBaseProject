@@ -8,9 +8,9 @@ $Students ( \underline{Student's ID} ; Student's Name ; Student's Sex ; Student'
 
 $Course Selecting ( \underline{Student's ID ; Course's ID ; Semester's ID} ; Score ; Evaluation )$
 
-$Course ( \underline{Course's ID}  ; Course's Name )$
+$Course ( \underline{Course's ID}  ; Course's Name  ; Course's Credit)$
 
-$Teaching(\underline{Course's ID ; Teacher's ID})$
+$Teaching(\underline{Course's ID ;Semester's ID; Teacher's ID})$
 
 $Teacher(\underline{Teacher's ID} ; Teacher's Name; Teacher's Sex; Teacher's Post)$
 

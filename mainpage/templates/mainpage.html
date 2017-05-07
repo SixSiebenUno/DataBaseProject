@@ -1,0 +1,54 @@
+{% extends "baseground.html" %}
+{% block body %}
+
+<body>
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="jumbotron">
+				<h1 align = "center">
+					选课评分及参考系统
+				</h1>
+				<p>
+                    基于课程历年的成绩信息，致力于搜集学生对已修课程的评价和评分，为面临选课的学生提供丰富的选课参考
+                </p>
+				<p align = "center">
+					 <a class="btn btn-primary btn-large" href="/auth/login">Sign In</a>
+					 <a class="btn btn-primary btn-large" href="/auth/register">Sign Up</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-4 column">
+			<h2 align = "center">
+				基于课程信息的查询
+			</h2>
+			<p>
+				在这个版块，你将输入所需查询的课程名称或课程编号的完整信息或部分信息，然后你将得到关于该课程的基本信息以及评分信息<a class="btn" href="/coursepage">View Details>>></a>
+            </p>
+		</div>
+		<div class="col-md-4 column">
+			<h2 align = "center">
+				基于教师信息的查询
+			</h2>
+			<p>
+                在这个版块，你将输入所需查询的教师的姓名的完整信息或部分信息，然后你将得到关于该教师的详细介绍以及教授的课程信息<a class="btn" href="/teacherpage">View Details>>></a>
+            </p>
+		</div>
+		<div class="col-md-4 column">
+			<h2 align = "center">
+				学生评分系统
+			</h2>
+			<p>
+                在这个版块，如果你的身份为学生，你将可以为你学习过的课程进行评分<a class="btn" href="/grade">View Details>>></a>
+            </p>
+		</div>
+	</div>
+</div>
+
+</body>
+
+</html>
+{% endblock %}

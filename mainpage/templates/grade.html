@@ -1,0 +1,61 @@
+{% extends "baseground.html" %}
+{% block body %}
+    <div class="row">
+        <form method="POST" class="form-horizontal col col-sm-6 col-sm-offset-3">
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">课程编号</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="cid" placeholder="请输入正确的课程编号">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">开课年份</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="cyear" placeholder="请输入正确的开课年份">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">成绩</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="score">
+                            <option value="A">A</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B">B</option>
+                            <option value="B-">B-</option>
+                            <option value="C+">C+</option>
+                            <option value="C">C</option>
+                            <option value="C-">C-</option>
+                            <option value="D">D</option>
+                            <option value="D-">D-</option>
+                            <option value="F">F</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">评价</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="eval" placeholder="请输入您的评价分数 0.00-100.00">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label"></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="comment" placeholder="请输入您的评价">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <title>
+        {% block title %}
+            CourseSelectionHelper
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">CourseSelectionHelper{% if g.authedUser !=None %} - {{ g.authedUser.name }}{% endif %}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+        
+                <ul class = "nav navbar-nav" style = "float:left;">
+                    <li class="{{ 'active' if  g.url_path=='/coursepage' else '' }}"><a href="/coursepage">Course</a></li>
+                    <li class="{{ 'active' if  g.url_path=='/teacherpage' else '' }}"><a href="/teacherpage">Teacher</a></li>
+                    <li class="{{ 'active' if  g.url_path=='/grade' else '' }}"><a href="/grade">Grade</a></li>
+                </ul>
+                {% if g.authedUser == None %}
+                <ul class="nav navbar-nav" style="float:right;">
+                    <li class="{{ 'active' if  g.url_path=='/auth/login' else '' }}"><a href="/auth/login">Sign In</a>
+                    </li>
+                    <li class="{{ 'active' if  g.url_path=='/auth/register' else '' }}"><a href="/auth/register">Sign Up</a>
+                    </li>
+                </ul>
+                {% endif %}
+
+                {% if g.authedUser != None %}
+                <ul class = "nav navbar-nav" style="float:right;">
+                    <li class="{{ 'active' if  g.url_path=='/profile' else '' }}"><a href="/profile">Profile</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                </ul>
+                {% endif %}
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="padding-top: 90px;">
+
+    {% block body %}
+        my body
+    {% endblock %}
+</div>
+
+</body>
+</html>
