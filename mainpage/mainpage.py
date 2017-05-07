@@ -134,7 +134,34 @@ def page_register_post():
 
 @app.route('/profile')
 def page_profile():
-	return render_template("profile.html")
+	
+	lista = []
+	lista.append({"sid": "   ", "sname": "   ", "ssex": "   ", "sage": "   ", "syear": "   "})
+	print lista
+
+	if g.authedUser == None:
+		return render_template("profile.html", list = lista)
+
+	id = g.authedUser['id']
+
+	listitem = []
+
+	print id
+	cursor = dbConnection.cursor()
+	cursor.execute("select count(*) from `student` where id = %s"%(id))
+
+	if cursor.fetchall()[0][0] == 0:
+		listitem = lista
+
+	cursor.execute("select * from `student` where id = %s"%(id))
+
+	for (iid, sid, sname, ssex, sage, syear, scredit, sgpa) in cursor.fetchall():
+		print iid, sid, sname, ssex, sage, syear, scredit, sgpa
+		listitem.append({"sid": sid, "sname": sname, "ssex": ssex, "sage": sage, "syear" : syear})
+	
+	print listitem
+	return render_template('profile.html', list = listitem)
+
 
 @app.route('/profile', methods = ["GET", "POST"])
 def page_profile_post():
@@ -144,6 +171,16 @@ def page_profile_post():
 	print id
 
 	cursor = dbConnection.cursor()
+	cursor.execute("select count(*) from `student` where id = %s"%(id))
+
+	if cursor.fetchall()[0][0] > 0:
+		cursor.execute("delete from `student` where id = %s"%(id))
+		cursor.execute("insert into `student` (id, sid, sname, ssex, sage, syear) values (%d, %s, '%s', '%s', %s, %s)"%(id, request.form['sid'], request.form['sname'], request.form['ssex'], request.form['sage'], request.form['syear']))
+		flash(u'修改信息成功', 'success')
+		cursor.close()
+		dbConnection.commit()
+		return redirect('/')
+
 	cursor.execute("insert into `student` (id, sid, sname, ssex, sage, syear) values (%d, %s, '%s', '%s', %s, %s)"%(id, request.form['sid'], request.form['sname'], request.form['ssex'], request.form['sage'], request.form['syear']))
 	flash(u"完善信息成功", 'success')
 	cursor.close()
@@ -251,10 +288,13 @@ def page_teacher_item(tid):
 
 @app.route("/courseitem/<cid>")
 def page_course_item(cid):
-    
+
 	cursor = dbConnection.cursor()
 	cursor.execute("select * from course where cid = '%s'"%(cid))
 	#print cursor.fetchall()
+
+	print 'here'
+	print g.authedUser['user_type']
 
 	post = []
 
@@ -273,12 +313,12 @@ def page_course_item(cid):
 	
 	print result
 
-	cursor.execute("select sid, comment from courseselecting where cid = '%s'"%(cid))
+	cursor.execute("select sid, eval, comment from courseselecting where cid = '%s'"%(cid))
 
 	comments = []
-	for (sid, comment) in cursor.fetchall():
-		print sid, comment
-		comments.append({"sid": sid, "comment": comment})
+	for (sid, score, comment) in cursor.fetchall():
+		print sid, score, comment
+		comments.append({"sid": sid,"score": score, "comment": comment})
 	
 	print comments
 	
@@ -286,6 +326,20 @@ def page_course_item(cid):
 
 
 
+@app.route("/courseitem/<cid>", methods=["POST"])
+def page_course_item_post(cid):
+	print 'here'
+	print request.form
+	if g.authedUser['user_type'] != 1:
+		flash(u"没有权限", 'error')
+		return redirect('/')
+	cursor = dbConnection.cursor()
+	cursor.execute("delete from courseselecting where comment = '%s'"%(request.form['delete']))
+	print cursor
+	cursor.close()
+	dbConnection.commit()
+	flash(u"删除成功！", 'success')
+	return redirect('/courseitem/' + cid)
 
 
 @app.route('/grade')

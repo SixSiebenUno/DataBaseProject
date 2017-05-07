@@ -1256,15 +1256,30 @@ $(document).ready(function(){
                 <table class="bordered">
                   <thead>
                     <tr>
-                        <th>学生学号</th>        
+                        <th>学生学号</th>
+                        <th>评分</th>        
                         <th>相关评语</th>
+                        {% if g.authedUser != None and g.authedUser.user_type==1 %}
+	                    <th>删除该评论</th>
+	                    {% endif %}
                     </tr>
                     </thead>
                     <tbody>
                     {% for item in comments %}
                     <tr>
                         <td>{{ item.sid }}</td>
+                        <td>{{ item.score }}</td>
                         <td>{{ item.comment }}</td>
+                        {% if g.authedUser != None and g.authedUser.user_type==1 %}
+                        <td>
+                        <form action="" method="post">
+		                        <input type="hidden" value="{{ item.comment }}" name="delete">
+		                        <button class="btn btn-danger btn-sm">
+		                            删除本评论
+		                        </button>
+		                </form>
+		                   </td>
+		                {% endif %}
                     </tr> 
                     {% endfor %}   
                     </tbody>
