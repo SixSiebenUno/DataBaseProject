@@ -13,7 +13,7 @@
     </title>
 </head>
 
-<body>
+<body background="http://img.zcool.cn/community/033109f554c70ee00000158fc519f3e.jpg">
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -21,7 +21,7 @@
             <a class="navbar-brand" href="/">CourseSelectionHelper{% if g.authedUser !=None %} - {{ g.authedUser.name }}{% endif %}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-        
+
                 <ul class = "nav navbar-nav" style = "float:left;">
                     <li class="{{ 'active' if  g.url_path=='/coursepage' else '' }}"><a href="/coursepage">Course</a></li>
                     <li class="{{ 'active' if  g.url_path=='/teacherpage' else '' }}"><a href="/teacherpage">Teacher</a></li>

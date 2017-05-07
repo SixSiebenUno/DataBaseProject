@@ -1,7 +1,14 @@
 {% extends "baseground.html" %}
 {% block body %}
 
-<body>
+<body background="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494146147692&di=2079798d11a7cd4d22d782f6b3f1bfbb&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1308%2F15%2Fc2%2F24494094_1376530595236.jpg">
+
+<style type="text/css" media="screen">
+        *{margin: 0;padding: 0;}
+        body{
+            opacity:0.85;
+        }
+</style>
 
 <div class="container">
 	<div class="row clearfix">
@@ -22,28 +29,34 @@
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-4 column">
+			<div class="jumbotron">
 			<h2 align = "center">
-				基于课程信息的查询
+				基于课程信息查询
 			</h2>
 			<p>
 				在这个版块，你将输入所需查询的课程名称或课程编号的完整信息或部分信息，然后你将得到关于该课程的基本信息以及评分信息<a class="btn" href="/coursepage">View Details>>></a>
             </p>
+            </div>
 		</div>
 		<div class="col-md-4 column">
+			<div class="jumbotron">
 			<h2 align = "center">
-				基于教师信息的查询
+				基于教师信息查询
 			</h2>
 			<p>
                 在这个版块，你将输入所需查询的教师的姓名的完整信息或部分信息，然后你将得到关于该教师的详细介绍以及教授的课程信息<a class="btn" href="/teacherpage">View Details>>></a>
             </p>
+            </div>
 		</div>
 		<div class="col-md-4 column">
+			<div class="jumbotron">
 			<h2 align = "center">
 				学生评分系统
 			</h2>
 			<p>
-                在这个版块，如果你的身份为学生，你将可以为你学习过的课程进行评分<a class="btn" href="/grade">View Details>>></a>
+                在这个版块，如果你的身份为学生，你将可以为你学习过的课程进行评分，作为选课评价系统的分析数据<a class="btn" href="/grade">View Details>>></a><br /><br />
             </p>
+            </div>
 		</div>
 	</div>
 </div>
