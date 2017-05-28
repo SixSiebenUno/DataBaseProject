@@ -11,7 +11,7 @@ import time
 app = Flask(__name__)
 app.secret_key = '123456'
 
-dbConnection = mysql.connector.connect(host = 'localhost', port = 3306, password = 'admin1', user = 'root', database = 'CSH')
+dbConnection = mysql.connector.connect(host = 'localhost', port = 3306, password = 'admin1', user = 'root', database = 'tmp')
 
 gradedict = {"A" : 4.0, "A-" : 3.7, "B+" : 3.3, "B" : 3.0, "B-" : 2.7, "C+": 2.3, "C": 2.0, "C-": 1.7, "D": 1.3, "D-": 1.0, "F": 0.0}
 
@@ -289,12 +289,12 @@ def page_teacher_item(tid):
 @app.route("/courseitem/<cid>")
 def page_course_item(cid):
 
+
 	cursor = dbConnection.cursor()
 	cursor.execute("select * from course where cid = '%s'"%(cid))
 	#print cursor.fetchall()
 
 	print 'here'
-	print g.authedUser['user_type']
 
 	post = []
 
@@ -303,6 +303,9 @@ def page_course_item(cid):
 		post.append({"cid": cid, "cname": cname, "ccredit": ccredit})
 	
 	print post
+
+	cursor.execute("select score, count(*) from courseselecting where cid = '%s' group by score"%(cid))
+	print cursor.fetchall()
 
 	cursor.execute("select score, count(*) from courseselecting where cid = '%s' group by score"%(cid))
 
@@ -350,10 +353,6 @@ def page_grade():
 def page_grade_post():
 
 	cursor = dbConnection.cursor()
-
-	print g.authedUser
-	print g.authedUser['id']
-
 
 	cursor.execute('select count(*) from `student` where id = %s', [g.authedUser['id']])
 
